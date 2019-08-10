@@ -3,18 +3,28 @@ language: bash
 os:
  - linux
 
+dist: xenial
+
 addons:
  apt:
   packages:
    - make
    - gcc
    - fasm
-   - ld
+   - git
 
 before_script:
  - bash clean.sh
 
 script:
+ - bash rm -f bin/.gitkeep disk/system/kernel/.gitkeep
  - bash make.sh
-
-dist: xenial
+ 
+ deploy:
+  provider: releases
+  api_key:
+    secure: _M7s9pHZlc16c6LpYVyl2A
+  file: "disk.img"
+  skip_cleanup: true
+  on:
+    tags: true
