@@ -19,7 +19,6 @@ before_script:
 script:
  - bash rm -f bin/.gitkeep disk/system/kernel/.gitkeep
  - bash make.sh
- - bash upload.sh
  
  deploy:
   provider: releases
