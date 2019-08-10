@@ -3,15 +3,20 @@ language: bash
 os:
  - linux
 
-install:
- - sudo apt-get --yes --force-yes update
- - sudo apt-get --yes --force-yes upgrade
- - sudo apt-get --yes --force-yes install make gcc fasm
+dist: xenial
+
+addons:
+ apt:
+  packages:
+   - make
+   - gcc
+   - fasm
+   - git
 
 before_script:
  - bash clean.sh
 
 script:
+ - bash rm -f bin/.gitkeep disk/system/kernel/.gitkeep
  - bash make.sh
-
-dist: xenial
+ - bash upload.sh
