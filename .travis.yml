@@ -1,0 +1,20 @@
+language: bash
+
+os:
+ - linux
+
+addons:
+ apt:
+  packages:
+   - make
+   - gcc
+   - fasm
+   - ld
+
+before_script:
+ - bash clean.sh
+
+script:
+ - bash make.sh
+
+dist: xenial
